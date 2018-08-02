@@ -1,0 +1,9 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: cloudnautique/pipeline
+timeout: 60
+branch: {}
