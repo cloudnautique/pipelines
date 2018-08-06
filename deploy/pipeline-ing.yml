@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pipeline-${CICD_EXECUTION_SEQUENCE}
+spec:
+  rules:
+  - host: pipeline-${CICD_EXECUTION_SEQUENCE}.demo.cloudnautique.com
+    http:
+      paths:
+      - backend:
+          serviceName: pipeline-${CICD_EXECUTION_SEQUENCE}
+          servicePort: 80

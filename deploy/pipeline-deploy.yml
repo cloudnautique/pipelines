@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: pipeline-${CICD_EXECUTION_SEQUENCE}
+  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
+spec:
+  template:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: pipeline-${CICD_EXECUTION_SEQUENCE}
+    template:
+      metadata:
+        labels:
+          app: pipeline-${CICD_EXECUTION_SEQUENCE}
+        name: pipeline-${CICD_EXECUTION_SEQUENCE}
+      containers:
+      - image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
