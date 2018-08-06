@@ -1,4 +1,9 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pipeline-${CICD_EXECUTION_SEQUENCE}
+---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -26,6 +31,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: pipeline-${CICD_EXECUTION_SEQUENCE}
+  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
 spec:
   rules:
   - host: pipeline-${CICD_EXECUTION_SEQUENCE}.demo.cloudnautique.com
@@ -34,11 +40,6 @@ spec:
       - backend:
           serviceName: pipeline-${CICD_EXECUTION_SEQUENCE}
           servicePort: 80
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: pipeline-${CICD_EXECUTION_SEQUENCE}
 ---
 apiVersion: v1
 kind: Service
