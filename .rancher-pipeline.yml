@@ -5,5 +5,13 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: cloudnautique/pipeline
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deploy/*
+  when:
+    branch:
+      include:
+      - master
 timeout: 60
 branch: {}
