@@ -47,7 +47,7 @@ kind: Service
 metadata:
   labels:
       app: pipeline
-      version: ${CICD_EXECUTION_SEQUENCE}
+      version: "${CICD_EXECUTION_SEQUENCE}"
   name: pipeline-${CICD_EXECUTION_SEQUENCE}
 #  namespace: pipelines-${CICD_EXECUTION_SEQUENCE}
 spec:
