@@ -35,7 +35,7 @@ metadata:
 #  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
 spec:
   rules:
-  - host: pipeline-${CICD_EXECUTION_SEQUENCE}.demo.cloudnautique.com
+  - host: pipelines-${CICD_EXECUTION_SEQUENCE}.demo.cloudnautique.com
     http:
       paths:
       - backend:
