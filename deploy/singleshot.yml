@@ -57,3 +57,5 @@ spec:
     protocol: TCP
     targetPort: 80
   type: ClusterIP
+  selector:
+    app: pipeline-${CICD_EXECUTION_SEQUENCE}
