@@ -1,27 +1,28 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: pipeline-${CICD_EXECUTION_SEQUENCE}
----
-apiVersion: apps/v1beta2
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: pipeline-${CICD_EXECUTION_SEQUENCE}
+#---
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: pipeline-${CICD_EXECUTION_SEQUENCE}
-  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
+#  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pipeline-${CICD_EXECUTION_SEQUENCE}
   template:
-    replicas: 1
-    selector:
-      matchLabels:
+    metadata:
+      labels:
         app: pipeline-${CICD_EXECUTION_SEQUENCE}
-    template:
-      metadata:
-        labels:
-          app: pipeline-${CICD_EXECUTION_SEQUENCE}
-        name: pipeline-${CICD_EXECUTION_SEQUENCE}
+      name: pipeline-${CICD_EXECUTION_SEQUENCE}
+    spec:
       containers:
       - image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+        name: pipeline
         ports:
         - containerPort: 80
           name: http
@@ -31,7 +32,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: pipeline-${CICD_EXECUTION_SEQUENCE}
-  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
+#  namespace: pipeline-${CICD_EXECUTION_SEQUENCE}
 spec:
   rules:
   - host: pipeline-${CICD_EXECUTION_SEQUENCE}.demo.cloudnautique.com
@@ -48,7 +49,7 @@ metadata:
       app: pipeline
       version: ${CICD_EXECUTION_SEQUENCE}
   name: pipeline-${CICD_EXECUTION_SEQUENCE}
-  namespace: pipelines-${CICD_EXECUTION_SEQUENCE}
+#  namespace: pipelines-${CICD_EXECUTION_SEQUENCE}
 spec:
   ports:
   - name: http
