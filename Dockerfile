@@ -1,6 +1,5 @@
-FROM golang:1.10 as build
+FROM cloudnautique/hugo:8-6-2018 as build
 
-RUN go get github.com/gohugoio/hugo
 WORKDIR /site
 COPY ./config.toml config.toml 
 COPY archetypes archetypes
