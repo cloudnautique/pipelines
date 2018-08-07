@@ -23,7 +23,7 @@ spec:
       containers:
       - image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         name: pipeline
-        imagePullPolicy: always
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
           name: http
